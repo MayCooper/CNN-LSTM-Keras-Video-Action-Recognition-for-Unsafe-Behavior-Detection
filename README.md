@@ -1,43 +1,59 @@
-# CNN-LSTM Video Action Recognition with UCF101
+# CNN-LSTM Computer Vision Video Action Recognition for Unsafe Behavior Detection  
 
 **Author: May Cooper**
 
 ## Overview
 
-This project applies a CNN-LSTM deep learning model to classify human actions in video clips, using a curated subset of the UCF101 dataset. The model is designed to identify pedestrian behaviors that may be deemed unsafe in real-world environments like construction zones. By combining spatial features from a pre-trained VGG16 convolutional network with temporal dependencies captured by an LSTM, the system learns to recognize and differentiate between actions such as CliffDiving, JumpingJack, and WalkingWithDog. The model supports multi-class classification and is optimized for motion-based activity recognition.
+This video classification project uses a CNN-LSTM neural network to detect unsafe human behaviors by analyzing action sequences in video footage. The model combines spatial features from a convolutional neural network (CNN) with temporal dependencies captured through a Long Short-Term Memory (LSTM) layer. This architecture enables real-time safety monitoring and supports proactive risk mitigation in surveillance and workplace environments.
 
 ---
 
-## Purpose and Research Question
+## Tools and Technologies
 
-**Research Question**: Can action recognition help detect unsafe pedestrian behavior, such as running or cliff-diving, near construction zones to prevent accidents?
-
-This project explores whether a CNN-LSTM model can classify potentially hazardous human actions using video footage, aiding real-time safety monitoring systems.
-
-**Objectives:**
-
-* Filter relevant pedestrian-like actions from UCF101.
-* Extract visual and temporal features.
-* Train a model to classify actions.
-* Enable real-time applicability for safety use cases.
-
+* **Python**
+* **TensorFlow / Keras**
+* **OpenCV**
+* **Matplotlib / Seaborn**
+* **NumPy / Pandas**
+  
 ---
 
 ## What is CNN-LSTM?
 
-**CNN-LSTM** is a hybrid model architecture:
+CNN-LSTM is a hybrid deep learning model that processes spatial and temporal data:
 
-* **CNN (Convolutional Neural Network)**: Extracts spatial features from individual frames using VGG16.
-* **LSTM (Long Short-Term Memory)**: Captures motion trends and temporal patterns across sequences of frames.
+- **CNN (Convolutional Neural Network)** captures spatial features from each video frame (e.g., edges, textures, objects).
+- **LSTM (Long Short-Term Memory)** models sequential dependencies between frames to recognize dynamic motion and action patterns.
 
-This architecture is ideal for tasks where both static visual appearance and dynamic motion are essential.
+Together, they are well-suited for recognizing human actions in video, especially when motion is a key indicator of behavior.
+
+---
+
+## Project Objectives
+
+- **Primary Goal**: Detect and classify unsafe pedestrian behavior in video sequences.
+- **Real-World Application**: Used in workplace surveillance, public safety, and construction monitoring to proactively flag hazardous actions.
+- **Technical Workflow**:
+  1. Preprocess videos into fixed-length frame sequences.
+  2. Extract spatial features with a pre-trained CNN (e.g., VGG16).
+  3. Model temporal dynamics with an LSTM network.
+  4. Train and evaluate the model using performance metrics and visualizations.
+
+---
+
+## Research Question
+
+Can a CNN-LSTM deep learning model accurately identify unsafe actions in real-time video to enable safety-enhancing interventions?
 
 ---
 
 ## Dataset Summary
 
-* **Source**: UCF101 human action recognition dataset
-* **Selected 11 Action Classes**: BalanceBeam, Biking, CliffDiving, HandstandWalking, JumpingJack, JumpRope, LongJump, Lunges, RockClimbingIndoor, RopeClimbing, WalkingWithDog
+- This project performs multiclass video classification using a subset of human actions from the UCF101 dataset, a standard benchmark for action recognition containing 101 video classes.
+- A selected group of 11 action categories (e.g., CliffDiving, RopeClimbing, WalkingWithDog) were used to train a convolutional neural network (CNN) to recognize and distinguish between them.
+- Each video is preprocessed into a fixed-length 20-frame RGB sequence and resized to 224×224 resolution to be compatible with standard CNN input dimensions.
+- The model uses a 3D convolutional architecture (Conv3D layers) to capture both spatial and temporal features of human motion from the video segments.
+  
 * **Processing Steps**:
 
   * Frames extracted from videos (sampled every 5 frames)
@@ -115,16 +131,6 @@ Examples included:
 | Recall         | 100% for top classes, 0% for underrepresented |
 | F1-Score       | Moderate (imbalanced by class)                |
 | Inference Time | \~0.08 sec/sequence                           |
-
----
-
-## Tools and Technologies
-
-* **Python**
-* **TensorFlow / Keras**
-* **OpenCV**
-* **Matplotlib / Seaborn**
-* **NumPy / Pandas**
 
 ---
 
